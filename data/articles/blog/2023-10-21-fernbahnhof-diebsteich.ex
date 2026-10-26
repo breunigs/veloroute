@@ -14,6 +14,15 @@ defmodule Data.Article.Blog.FernbahnhofDiebsteich do
   def start(), do: ~d[2024Q4]
   def stop(), do: ~d[2026Q4]
 
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"Fichtner Water & Transportation", "https://www.fwt.fichtner.de/kontakt/inland"},
+       {"iwb Ingenieure", "https://www.iwb-ingenieure.de/"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "Oktober 2023",
@@ -32,7 +41,7 @@ defmodule Data.Article.Blog.FernbahnhofDiebsteich do
 
     <p>Am <.v bounds="9.926438,53.565059,9.939544,53.570201" lon={9.933209} lat={53.567011} dir="backward" ref={Freizeitroute9}>Zebrastreifen auf der Westseite der Unterführung</.v> kam es häufig zu Unfällen.</p>
 
-    <h4>Planung</h4>
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
     <h5>Ostseite</h5>
     <p>Auf Seite des neuen Fernbahnhofs beginnt ab etwa Höhe <.v bounds="9.926438,53.565059,9.939544,53.570201" lon={9.93555} lat={53.568752} dir="forward" ref={Freizeitroute9}>Waidmannstraße</.v> ein 3,0m breiter Zweirichtungsradweg nach Süden. Er verläuft neben einer neuen, zweispurigen Fahrbahn. Die <.v bounds="9.926438,53.565059,9.939544,53.570201" lon={9.935772} lat={53.568342} dir="forward" ref={Freizeitroute9}>Isebekstraße</.v> wird als wartepflichtige Gehwegüberfahrt an die Fahrbahn angebunden, allerdings nicht an den Radweg.</p>
 

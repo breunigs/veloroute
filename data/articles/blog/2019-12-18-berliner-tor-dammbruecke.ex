@@ -14,6 +14,14 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def tags(), do: ["radroute-12", "radroute-1", "radroute-9", "8", "FR4"]
 
+  def map_image do
+    {name(),
+     [
+       {"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"},
+       {"Inros Lackner SE", "https://www.inros-lackner.de/de"}
+     ]}
+  end
+
   def links(_assigns) do
     [
       {"Baustelleninfo", ~d[2026-02],
@@ -35,7 +43,26 @@ defmodule Data.Article.Blog.BerlinerTorDammbruecke do
 
   def text(assigns) do
     ~H"""
-    <p>Die Brücke hat ihre Lebenszeit erreicht und muss neugebaut werden. Diese soll dabei ihre aktuelle Breite behalten, d.h. nur die Spurenaufteilung verändert sich. Der Radverkehr kommt dabei gut weg – die beiden Fahrtrichtungen der Veloroute erhalten jeweils 2m Breite (statt aktuell 1,50m), ebenso wie der Radweg auf der Südseite der Brücke. Zwischen Fußweg und Radwegen auf der Nordseite soll auch ein knapp vier Meter breiter Grünstreifen angelegt werden.</p> <p>Diesen Platz holt man sich hauptsächlich durch die Halbierung des nicht befahrbaren Mittelstreifen auf 1,50m und die annähernde Halbierung des Fußwegs auf der Südseite auf 2,65m. Auch die Poller gegen Falschparker entfallen und tragen zum Platzgewinn bei.</p> <p>Zusätzlich wird an der <.m bounds="10.025252,53.552947,10.027992,53.554579">Klaus-Groth-Straße</.m> eine Ampel aufgestellt. Diese ermöglicht das sichere Queren des Berlinertordamms, soll aber auch den Rad- und Fußverkehr über die Klaus-Groth-Straße regeln. Bisher stellen aus der Nebenstraße kommende KFZ einen Unfallschwerpunkt für den Radverkehr auf der Veloroute dar, v.a. in Fahrtrichtung stadtauswärts. Es ist geplant KFZ nur auf Anforderung grün zu geben und ansonsten Rad/Fuß zu bevorrechtigen – wie eine Bettelampel, nur für KFZ.</p> <p>Da es sich um den ersten Entwurf handelt ist noch mit Änderungen zu rechnen. Neben offensichtlichen Planungsfehlern (keine Ampel für den Radverkehr am <.m bounds="10.022758,53.552824,10.025498,53.554456">Berliner Tor</.m>), stellt sich auch die Frage warum man den südlichen Fußweg so stark verschmälert, wenn für den Mittelstreifen noch 1,50m vorgesehen sind. Leier wurde nicht untersucht ob die Klaus-Groth-Straße für KFZ gesperrt werden kann, damit der Radverkehr nicht durch eine Ampel ausgebremst wird und ggf. auch die Schikanen am Park entfallen könnten.</p> <p>Geplant ist mit Vorarbeiten 2023 zu starten und die Brücke ab 2024 bis 2028 komplett neuzubauen.</p>
+    <h4>Alter Zustand</h4>
+    <p>Die Brücke hat ihre Lebenszeit erreicht und muss neugebaut werden. Beidseitig sind 1,50m breite <.ref>Hochbordradwege</.ref> vorhanden. Poller halten Falschparker von ihnen fern. In der Straßenmitte liegt ein breiter, nicht befahrbarer Mittelstreifen, auf der Südseite ein breiter Fußweg.</p>
+
+    <p>An der <.m bounds="10.025252,53.552947,10.027992,53.554579">Klaus-Groth-Straße</.m> gibt es keine Ampel. Aus der Nebenstraße kommende KFZ stellen einen Unfallschwerpunkt für den Radverkehr auf der Veloroute dar, v.a. in Fahrtrichtung stadtauswärts.</p>
+
+    <.h4_planning ref={@ref} checked={@show_map_image}/>
+    <p>Die Brücke soll ihre aktuelle Breite behalten, d.h. nur die Spurenaufteilung verändert sich. Die beiden Fahrtrichtungen der Veloroute erhalten jeweils 2m Breite statt bisher 1,50m, ebenso wie der Radweg auf der Südseite der Brücke. Zwischen Fußweg und Radwegen auf der Nordseite soll auch ein knapp vier Meter breiter Grünstreifen angelegt werden.</p>
+
+    <p>Diesen Platz holt man sich hauptsächlich durch die Halbierung des nicht befahrbaren Mittelstreifens auf 1,50m und die annähernde Halbierung des Fußwegs auf der Südseite auf 2,65m. Auch die Poller gegen Falschparker entfallen und tragen zum Platzgewinn bei.</p>
+
+    <p>Zusätzlich wird an der <.m bounds="10.025252,53.552947,10.027992,53.554579">Klaus-Groth-Straße</.m> eine Ampel aufgestellt. Diese ermöglicht das sichere Queren des Berlinertordamms, soll aber auch den Rad- und Fußverkehr über die Klaus-Groth-Straße regeln. Es ist geplant KFZ nur auf Anforderung grün zu geben und ansonsten Rad/Fuß zu bevorrechtigen – wie eine <.ref>Bettelampel</.ref>, nur für KFZ.</p>
+
+    <p>Die Vorarbeiten starteten 2023. Die Brücke wird seit 2024 komplett neugebaut und soll 2028 fertig werden.</p>
+
+    <h4>Meinung</h4>
+    <p>Der Radverkehr kommt gut weg. Neben offensichtlichen Planungsfehlern (keine Ampel für den Radverkehr am <.m bounds="10.022758,53.552824,10.025498,53.554456">Berliner Tor</.m>) stellt sich aber die Frage, warum man den südlichen Fußweg so stark verschmälert, wenn für den Mittelstreifen noch 1,50m vorgesehen sind.</p>
+
+    <p>Leider wurde nicht untersucht, ob die Klaus-Groth-Straße für KFZ gesperrt werden kann, damit der Radverkehr nicht durch eine Ampel ausgebremst wird und ggf. auch die Schikanen am Park entfallen könnten.</p>
+
+    <p>Trotz aller Kritik: mit 2m je Fahrtrichtung wird es deutlich besser als heute.</p>
 
     <h4>Quelle</h4>
     <.structured_links ref={@ref}/>

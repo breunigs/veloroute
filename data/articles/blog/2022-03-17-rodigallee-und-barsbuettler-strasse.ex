@@ -52,9 +52,7 @@ defmodule Data.Article.Blog.RodigalleeUndBarsbuettlerStrasse do
       }
     ]
 
-  def map_image do
-    {name(), [{"LSBG Hamburg", "https://lsbg.hamburg.de/ueber-uns/kontakt"}]}
-  end
+  def map_image(), do: Data.Article.Blog.JuethornstrasseUndRodigallee.map_image()
 
   def links(_assigns) do
     [

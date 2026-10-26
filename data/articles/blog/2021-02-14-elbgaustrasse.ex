@@ -12,7 +12,7 @@ defmodule Data.Article.Blog.Elbgaustrasse do
 
   def start(), do: ~d[2025-05-29]
   def stop(), do: ~d[2027-05-31]
-  def construction_site_id_hh(), do: [1_386_246, 3_272_753]
+  def construction_site_id_hh(), do: [1_386_246, 3_272_753, 4_088_971]
 
   def type(), do: :construction
 

@@ -5,8 +5,9 @@ defmodule Data.Article.Blog.Alsenstrasse do
 
   def summary(), do: "In Abschnitten werden Trennelemente zum KFZ-Verkehr aufgeklebt."
 
-  def start(), do: ~d[2026-09]
-  def stop(), do: ~d[2026-09]
+  def start(), do: ~d[2026-11-02]
+  def stop(), do: ~d[2026-11-13]
+  def construction_site_id_hh(), do: [4_103_208]
 
   def type(), do: :planned
 
