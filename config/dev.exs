@@ -12,6 +12,7 @@ config :veloroute, VelorouteWeb.Endpoint,
   check_origin: false,
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    esbuild_maplibre: {Esbuild, :install_and_run, [:maplibre, ~w(--sourcemap=inline --watch)]},
     sass: {
       DartSass,
       :install_and_run,
