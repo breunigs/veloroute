@@ -135,6 +135,8 @@ defmodule Basemap.Static.Runner do
         []
       end
 
+    warm_up(ports)
+
     {:ok, %{ports: ports, processing: %{}, queue: [], backoff: 1}}
   end
 
@@ -352,6 +354,63 @@ defmodule Basemap.Static.Runner do
           )
 
       nil
+    end
+  end
+
+  # the first render of a fresh process is slow, since it needs to set up its
+  # GPU context and load the style, sprites and fonts. Doing that before the
+  # endpoint starts keeps real requests from running into the render timeout.
+  @warm_up_timeout 60_000
+  @spec warm_up([port()]) :: :ok
+  defp warm_up([]), do: :ok
+
+  defp warm_up(ports) do
+    center = Settings.r(:bounds) |> Geo.BoundingBox.parse() |> Geo.CheapRuler.center()
+
+    line =
+      Enum.join(
+        [
+          center.lon,
+          center.lat,
+          Basemap.Constants.min_zoom(),
+          1,
+          64,
+          64,
+          @highlight_layer,
+          @highlight_property,
+          "_"
+        ],
+        " "
+      ) <> "\n"
+
+    deadline = :os.system_time(:millisecond) + @warm_up_timeout
+    Enum.each(ports, &Port.command(&1, line))
+    Enum.each(ports, &await_warm_up(&1, deadline))
+  end
+
+  @spec await_warm_up(port(), non_neg_integer()) :: :ok
+  defp await_warm_up(port, deadline) do
+    timeout = deadline - :os.system_time(:millisecond)
+
+    receive do
+      {^port, {:data, @png_header <> _rest}} ->
+        :ok
+
+      {^port, {:data, @riff <> <<_size::binary-size(4)>> <> @webp <> _rest}} ->
+        :ok
+
+      {^port, {:data, "ERROR" <> msg}} ->
+        Logger.warning("#{inspect(port)}: warm up render failed: #{msg}")
+
+      {^port, {:exit_status, status}} = msg ->
+        send(self(), msg)
+        Logger.warning("#{inspect(port)}: exited with #{status} while warming up")
+
+      {^port, {:data, _other}} ->
+        await_warm_up(port, deadline)
+    after
+      max(timeout, 0) ->
+        Logger.warning("#{inspect(port)}: did not warm up within #{@warm_up_timeout}ms")
     end
   end
 end
