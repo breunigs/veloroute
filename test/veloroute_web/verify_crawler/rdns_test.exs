@@ -82,17 +82,58 @@ defmodule VelorouteWeb.VerifyCrawler.RdnsTest do
     end
   end
 
-  describe "verify/2 does not block the caller" do
-    test "an address it has never seen is unknown rather than a DNS wait" do
-      assert VelorouteWeb.VerifyCrawler.Rdns.verify({192, 0, 2, 123}, @google) == :unknown
+  describe "verify/3 waits briefly for a verdict" do
+    setup do
+      addr = {192, 0, 2, System.unique_integer([:positive]) |> rem(250) |> Kernel.+(1)}
+      on_exit(fn -> Cachex.del(VelorouteWeb.VerifyCrawler.Rdns, {addr, @google}) end)
+      %{addr: addr}
     end
 
-    test "it answers from the cache once a verdict is known" do
-      key = {{192, 0, 2, 200}, @google}
-      Cachex.put(VelorouteWeb.VerifyCrawler.Rdns, key, :forged)
-      on_exit(fn -> Cachex.del(VelorouteWeb.VerifyCrawler.Rdns, key) end)
+    test "a lookup that answers in time decides the request", %{addr: addr} do
+      assert VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, fn _, _ -> :forged end) ==
+               :forged
+    end
 
-      assert VelorouteWeb.VerifyCrawler.Rdns.verify({192, 0, 2, 200}, @google) == :forged
+    test "a lookup that is too slow lets the request through", %{addr: addr} do
+      slow = fn _, _ -> Process.sleep(600) && :forged end
+      assert VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, slow) == :unknown
+    end
+
+    test "but the slow lookup still lands, so the next request is decided", %{addr: addr} do
+      slow = fn _, _ -> Process.sleep(400) && :forged end
+      assert VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, slow) == :unknown
+
+      Process.sleep(500)
+
+      assert VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, fn _, _ ->
+               raise "must come from the cache"
+             end) == :forged
+    end
+
+    test "the wait is bounded even when the lookup hangs", %{addr: addr} do
+      hang = fn _, _ -> Process.sleep(5_000) && :forged end
+
+      {us, verdict} =
+        :timer.tc(fn -> VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, hang) end)
+
+      assert verdict == :unknown
+      assert us < 1_000_000, "waited #{div(us, 1000)}ms, expected to give up at ~250ms"
+    end
+
+    test "a known verdict answers without consulting the resolver", %{addr: addr} do
+      Cachex.put(VelorouteWeb.VerifyCrawler.Rdns, {addr, @google}, :verified)
+
+      assert VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, fn _, _ ->
+               raise "resolver must not be consulted"
+             end) == :verified
+    end
+
+    test "an inconclusive lookup is not cached, so it is retried", %{addr: addr} do
+      assert VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, fn _, _ -> :unknown end) ==
+               :unknown
+
+      assert VelorouteWeb.VerifyCrawler.Rdns.verify(addr, @google, fn _, _ -> :forged end) ==
+               :forged
     end
   end
 end

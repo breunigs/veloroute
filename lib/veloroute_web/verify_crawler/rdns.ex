@@ -2,6 +2,7 @@ defmodule VelorouteWeb.VerifyCrawler.Rdns do
   require Logger
 
   @dns_timeout_ms 2_000
+  @grace_ms 250
   @expire_verified :timer.hours(24)
   @expire_forged :timer.hours(6)
 
@@ -9,17 +10,32 @@ defmodule VelorouteWeb.VerifyCrawler.Rdns do
     Supervisor.child_spec({Cachex, name: __MODULE__}, id: __MODULE__)
   end
 
-  @spec verify(:inet.ip_address(), [binary()]) :: :verified | :forged | :unknown
-  def verify(addr, domains) do
+  @spec verify(:inet.ip_address(), [binary()], (:inet.ip_address(), [binary()] ->
+                                                  :verified | :forged | :unknown)) ::
+          :verified | :forged | :unknown
+  def verify(addr, domains, resolver \\ &resolve/2) do
     case Cachex.get(__MODULE__, {addr, domains}) do
-      {:ok, nil} ->
-        resolve_in_background(addr, domains)
-        :unknown
+      {:ok, nil} -> await_briefly(addr, domains, resolver)
+      {:ok, verdict} -> verdict
+      _ -> :unknown
+    end
+  end
 
-      {:ok, verdict} ->
+  defp await_briefly(addr, domains, resolver) do
+    task =
+      Task.async(fn ->
+        Cachex.fetch(__MODULE__, {addr, domains}, fn _ -> cache_entry(addr, domains, resolver) end)
+      end)
+
+    case Task.yield(task, @grace_ms) do
+      {:ok, {state, verdict}} when state in [:ok, :commit] ->
         verdict
 
+      {:ok, _} ->
+        :unknown
+
       _ ->
+        Task.ignore(task)
         :unknown
     end
   end
@@ -45,14 +61,8 @@ defmodule VelorouteWeb.VerifyCrawler.Rdns do
   @spec normalise(binary()) :: binary()
   def normalise(name), do: name |> String.trim_trailing(".") |> String.downcase()
 
-  defp resolve_in_background(addr, domains) do
-    Task.start(fn ->
-      Cachex.fetch(__MODULE__, {addr, domains}, fn _ -> cache_entry(addr, domains) end)
-    end)
-  end
-
-  defp cache_entry(addr, domains) do
-    case resolve(addr, domains) do
+  defp cache_entry(addr, domains, resolver) do
+    case resolver.(addr, domains) do
       :verified -> {:commit, :verified, expire: @expire_verified}
       :forged -> {:commit, :forged, expire: @expire_forged}
       :unknown -> {:ignore, :unknown}
