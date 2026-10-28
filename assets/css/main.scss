@@ -102,6 +102,9 @@ $mapBgColor: #EFE9E1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // #videoPoster is layout contained, so it is a stacking context painted in
+    // tree order after this pseudo element. Lift the icon above it again.
+    z-index: 1;
 
     -webkit-backdrop-filter: $videoControlsBackdrop;
     backdrop-filter: $videoControlsBackdrop;
