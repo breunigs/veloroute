@@ -1,0 +1,68 @@
+#content	contain
+#indicator	contain
+#indicator	filter
+#indicator	translate
+#indicator	z-index
+#layerSwitcher	z-index
+#layerSwitcher #layerSwitcherMenu button.active::before	filter
+#layerSwitcher #layerSwitcherMenu,#layerSwitcher #videoOptionsMenu,#videoOptions #layerSwitcherMenu,#videoOptions #videoOptionsMenu	opacity
+#layerSwitcher>button	will-change
+#mapOuter	z-index
+#mapOuter,#videoOuter	contain
+#mapOuter,#videoOuter	position
+#mapPreview img	z-index
+#reverse,#videoRoute span	filter
+#sidebar	contain
+#sidebar	z-index
+#videoControls #progressWrapper	contain
+#videoControls #progressWrapper	z-index
+#videoControls #progressWrapper #progressPreview	contain
+#videoControls #progressWrapper #progressPreview	opacity
+#videoControls #progressWrapper #progressPreview	transform
+#videoControls #progressWrapper #progressPreview	z-index
+#videoControls #progressWrapper #progressPreview video	opacity
+#videoControls button	filter
+#videoControls button.disabled::before	transform
+#videoControls progress	contain
+#videoControls progress	transform
+#videoControlsBg,#videoRoute,#videoOptionsMenu	backdrop-filter
+#videoOptions #videoOptionsMenu	z-index
+#videoOptions #videoOptionsMenu a::before	filter
+#videoOptions:not(.hidden) button:hover	filter
+#videoOuter	container
+#videoOuter	view-transition-name
+#videoOuter.animate::before	opacity
+#videoOuter.animate::before	transform
+#videoOuter::before	backdrop-filter
+#videoOuter::before	transform
+#videoOuter::before	z-index
+#videoPoster	contain
+#videoPoster::after	will-change
+#videoPoster::after,#videoPoster::before	contain
+#videoPoster::after,#videoPoster::before	opacity
+#videoRoute,#videoControls,#videoControlsBg	opacity
+#videoRoute,#videoControls,#videoControlsBg	z-index
+.maplibregl-ctrl	transform
+.maplibregl-ctrl button.maplibregl-ctrl-fullscreen .maplibregl-ctrl-icon,.maplibregl-ctrl button.maplibregl-ctrl-shrink .maplibregl-ctrl-icon	filter
+.maplibregl-ctrl button:disabled .maplibregl-ctrl-icon	opacity
+.maplibregl-ctrl-top-left,.maplibregl-ctrl-top-right,.maplibregl-ctrl-bottom-left,.maplibregl-ctrl-bottom-right	z-index
+.maplibregl-marker	will-change
+.maplibregl-pseudo-fullscreen	z-index
+.showSidebar #sidebar	transform
+@keyframes spinner / 0%	transform
+@keyframes spinner / 100%	transform
+@media (hover:hover) / #videoControls button:not(.disabled):hover	filter
+@media (hover:hover) / #videoOptions a:hover::before	filter
+@media (min-width:990px) / #sidebar	position
+@starting-style / #videoControls #progressWrapper #progressPreview.enabled	opacity
+@starting-style / #videoControls #progressWrapper:hover #progressPreview	opacity
+a.icon:hover,a.customicon:hover	opacity
+body.fullscreen #videoOuter,.maplibregl-pseudo-fullscreen	position
+body.fullscreen #videoOuter,.maplibregl-pseudo-fullscreen	z-index
+body.fullscreen #videoOuter.inactivity #videoControls,body.fullscreen #videoOuter.inactivity #videoControlsBg,body.fullscreen #videoOuter.inactivity #videoRoute,#videoOuter:fullscreen.inactivity #videoControls,#videoOuter:fullscreen.inactivity #videoControlsBg,#videoOuter:fullscreen.inactivity #videoRoute	opacity
+body.showSidebar::before	opacity
+body::before	z-index
+table.routing td.dir	opacity
+table.routing2 td.dim	opacity
+table.routing2 td.dir	opacity
+table.routing2 td:nth-child(2) svg,table.routing2 td:nth-child(2) img	scale

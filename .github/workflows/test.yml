@@ -50,4 +50,6 @@ jobs:
       - run: mix compile
       - run: mix format --check-formatted
       - run: mix velo.setup ci
+      # test/assets/css_test.exs compiles the stylesheet itself
+      - run: mix sass.install --if-missing
       - run: mix test --exclude requires_mount
