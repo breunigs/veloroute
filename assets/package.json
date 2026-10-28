@@ -2,7 +2,8 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "build:hls": "node build_hls.mjs"
+    "build:hls": "node build_hls.mjs",
+    "build:maplibre": "node build_maplibre.mjs"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.4.3",

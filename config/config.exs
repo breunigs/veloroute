@@ -70,9 +70,10 @@ config :esbuild,
   ],
   # maplibre and its worker share ~500kb of code. Splitting it into a chunk
   # both import means it is only downloaded once, which requires ESM output.
+  # Both come from vendor/, where build_maplibre.mjs drops the MLT decoder.
   maplibre: [
     args:
-      ~w(js/mbgl2.ts mbgl2_worker=node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs --bundle --splitting --format=esm --chunk-names=mbgl2_shared --target=chrome117,firefox115,safari17,edge140 --outdir=../priv/static/assets --color=true),
+      ~w(js/mbgl2.ts mbgl2_worker=vendor/maplibre/maplibre-gl-worker.mjs --bundle --splitting --format=esm --chunk-names=mbgl2_shared --alias:maplibre-gl=./vendor/maplibre/maplibre-gl.mjs --target=chrome117,firefox115,safari17,edge140 --outdir=../priv/static/assets --color=true),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
