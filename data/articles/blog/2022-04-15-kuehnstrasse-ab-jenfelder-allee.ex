@@ -11,8 +11,9 @@ defmodule Data.Article.Blog.KuehnstrasseAbJenfelderAllee do
       "1,75m breite Radfahrstreifen. Umbau nur möglich, wenn die Kreuzung mit der Jenfelder Allee ebenfalls mit angepasst wird."
 
   def type(), do: :planned
-  def start(), do: ~d[2026-10-15]
-  def stop(), do: ~d[2027-11]
+  def start(), do: ~d[2026-11-16]
+  def stop(), do: ~d[2027-11-30]
+  def construction_site_id_hh(), do: [4_129_595]
 
   def tags(), do: ["radroute-7", "7", "w25"]
 
