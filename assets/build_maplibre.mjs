@@ -5,10 +5,10 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
 // that reaches the decoder leaves it unreferenced, so esbuild drops all of it.
 // Done on a copy of the prebuilt dist rather than by bundling maplibre from
 // source, because esbuild's own output is ~17kb gzip larger than theirs.
+// Each bundle inlines its own copy of the decoder, so both need the patch.
 const SRC = 'node_modules/maplibre-gl/dist';
 const DEST = 'vendor/maplibre';
-const PATCHED = 'maplibre-gl-shared.mjs';
-const FILES = ['maplibre-gl.mjs', PATCHED, 'maplibre-gl-worker.mjs'];
+const FILES = ['maplibre-gl.mjs', 'maplibre-gl-worker.mjs'];
 
 // matches: pT=class{constructor(e){this.layers={};let t=cT(new Uint8Array(e));
 //          this.layers=t.reduce((e,t)=>({...e,[t.name]:new fT(t)}),{})}}
@@ -22,12 +22,12 @@ const { version } = JSON.parse(readFileSync('node_modules/maplibre-gl/package.js
 // would otherwise silently bundle the copy made from an older maplibre
 rmSync(DEST, { recursive: true, force: true });
 
-const patch = (code) => {
+const patch = (code, file) => {
   const hits = code.match(MLT_TILE)?.length ?? 0;
 
   if (hits !== 1) {
     throw new Error(
-      `Found ${hits} MLT tile classes in ${SRC}/${PATCHED}, expected exactly 1.\n` +
+      `Found ${hits} MLT tile classes in ${SRC}/${file}, expected exactly 1.\n` +
         `maplibre-gl ${version} must have changed how it decodes tiles. Re-derive the\n` +
         'pattern in assets/build_maplibre.mjs against the new dist, or drop that file,\n' +
         'its npm script and the --alias in the esbuild maplibre profile to go back to\n' +
@@ -40,7 +40,7 @@ const patch = (code) => {
 
 const files = FILES.map((file) => {
   const code = readFileSync(`${SRC}/${file}`, 'utf-8');
-  return [file, file === PATCHED ? patch(code) : code];
+  return [file, patch(code, file)];
 });
 
 mkdirSync(DEST, { recursive: true });
