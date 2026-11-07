@@ -115,7 +115,8 @@ defmodule Mix.Tasks.Velo.Feeds.Sitzungsdienst do
 
   @spec search_district(binary(), binary(), binary()) :: [result()]
   defp search_district(district, keyword, de_date_range) do
-    sitzungen = !(keyword in @filter_keywords_sitzungen_ignore)
+    # Allris only recognizes 1 here; any other value silently omits all Sitzungen
+    sitzungen = if keyword in @filter_keywords_sitzungen_ignore, do: 0, else: 1
     url = "https://sitzungsdienst-#{district}.hamburg.de/bi/yw041.asp"
     params = %{ajx: 1, to: 1, vo: 1, si: sitzungen, q: keyword, d: de_date_range}
 
