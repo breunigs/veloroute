@@ -72,8 +72,8 @@ defmodule Article do
   """
   @spec released?(t()) :: boolean()
   def released?(art) do
-    art.created_at() == nil ||
-      Date.compare(art.created_at(), Date.utc_today()) != :gt
+    today = Settings.r(:timezone) |> DateTime.now!() |> DateTime.to_date()
+    art.created_at() == nil || Date.compare(art.created_at(), today) != :gt
   end
 
   def has_category?(art, type) when type in @known_categories do
