@@ -8,8 +8,8 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
 
   # def start(), do: ~d[2021-02-15]
   # def stop(), do: ~d[2022-10-30]
-  def start(), do: ~d[2027-09]
-  def stop(), do: ~d[2028-08]
+  def start(), do: ~d[2027-10]
+  def stop(), do: ~d[2028-06]
 
   def type(), do: :planned
   # def construction_site_id_hh(), do: [14569, 17416, 17425, 20204, 55519]
@@ -19,8 +19,10 @@ defmodule Data.Article.Blog.BinnenhafenHarburg do
 
   def links(_assigns) do
     [
-      {"Bauzeitraum", ~d[2026-10],
-       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1015114"},
+      {"Bauzeitraum", ~d[2026-11],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1015193"},
+      # {"Bauzeitraum", ~d[2026-10],
+      #  "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1015114"},
       # {"Bauzeitraum", ~d[2026-09],
       #  "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1014905"},
       {"Pressemitteilung zur Vollendung des 1. Abschnitts",

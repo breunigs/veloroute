@@ -5,17 +5,18 @@ defmodule Data.Article.Blog.BlankeneserFriedhof do
   def updated_at(), do: ~D[2026-07-10]
 
   def title(), do: "Friedhof Blankenese (Radroute 1)"
-  def icon(), do: :nocargo
+  # def icon(), do: :nocargo
 
   def summary(),
     do: "Friedhofsdurchfahrt soll getrennter Rad- und Fußweg werden"
 
   def point_of_interest(), do: %{lon: 9.80137, lat: 53.57296, zoom: 17}
 
-  def start(), do: ~d[2026-09]
-  def stop(), do: ~d[2027Q1]
+  def start(), do: ~d[2026-09-14]
+  def stop(), do: ~d[2026-12-18]
+  def construction_site_id_hh(), do: [4_237_776]
 
-  def type(), do: :planned
+  def type(), do: :construction
 
   def tags(), do: ["radroute-1", "1", "a15.1"]
 

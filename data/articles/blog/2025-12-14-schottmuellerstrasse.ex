@@ -7,7 +7,7 @@ defmodule Data.Article.Blog.Schottmuellerstrasse do
     do:
       "2,25m breite Radfahrstreifen sollen nahtlos an die Planung „Eppendorfer Markplatz“ anschließen. Sie enden kurz vor bzw. nach der Kümmellstraße."
 
-  def type(), do: :planned
+  def type(), do: :finished
 
   def start(), do: ~d[2026-10]
   def stop(), do: ~d[2026-12]

@@ -68,8 +68,10 @@ defmodule Data.Article.Blog.BremerStrasse1 do
 
   def links(_assigns) do
     [
-      {"Bauzeitraum", ~d[2026-09],
-       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1014905"},
+      {"Bauzeitraum", ~d[2026-11],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1015193"},
+      # {"Bauzeitraum", ~d[2026-09],
+      #  "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1014905"},
       {"Detailänderungen des fertigen Entwurfs", ~d[2024-10],
        "https://lsbg.hamburg.de/resource/blob/972270/6f29a61b304bf6e8b8fe0bc9f7fbc62d/bremer-strasse-aenderung-zur-schlussverschickung-bericht-data.pdf"},
       {"Lagepläne mit den Detailänderungen", ~d[2024-10],

@@ -10,8 +10,8 @@ defmodule Data.Article.Blog.Ferdinandstor do
       "Alsterseite: 4,0m breite Protected-Bike-Lane unter der Brücke. Seite Kunsthalle: 2,5m Hochbordradweg. Anschlüsse bleiben wie bisher."
 
   def start(), do: ~d[2021-06-14]
-  def stop(), do: ~d[2026Q3]
-  # def construction_site_id_hh(), do: [16775, 718_592]
+  def stop(), do: ~d[2027-08-31]
+  def construction_site_id_hh(), do: [16775, 718_592, 4_240_722]
 
   def type(), do: :construction
 

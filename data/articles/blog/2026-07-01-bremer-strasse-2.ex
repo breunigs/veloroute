@@ -14,7 +14,7 @@ defmodule Data.Article.Blog.BremerStrasse2 do
   def tracks(), do: Data.Article.Blog.BremerStrasse1.tracks()
 
   def start(), do: ~d[2026-08-30]
-  def stop(), do: ~d[2026-12-20]
+  def stop(), do: ~d[2026-12-18]
   def construction_site_id_hh(), do: [3_804_594]
 
   def map_image do
@@ -27,6 +27,8 @@ defmodule Data.Article.Blog.BremerStrasse2 do
 
   def links(_assigns) do
     [
+      {"Bauzeitraum", ~d[2026-11],
+       "https://sitzungsdienst-harburg.hamburg.de/bi/vo020.asp?VOLFDNR=1015193"},
       {"Karten und Erläuterungen", ~d[2026-07],
        "https://fragdenstaat.de/anfrage/grundinstandsetzung-der-bremer-strasse-b-75-in-hamburg/#nachricht-1129740"}
     ]

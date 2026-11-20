@@ -9,8 +9,6 @@ defmodule Data.Article.Blog.KreuzungSaarlandstrasseWiesendamm do
   def type(), do: :planned
   def tags(), do: ["radroute-12", "5N", "5", "br-nord-n6"]
 
-  def start(), do: ~d[2030]
-
   def links(_assigns) do
     [
       {"Erläuterungsbericht", "Juni 2022, Entwurf",
@@ -22,6 +20,9 @@ defmodule Data.Article.Blog.KreuzungSaarlandstrasseWiesendamm do
 
   def text(assigns) do
     ~H"""
+    <h4>Stand November 2026</h4>
+    <p>Die Planung wurde auf unbestimmte Zeit verschoben. Grund ist der Bau der U5, weil die Kreuzung als KFZ-Umleitungsstrecke verwendet wird.</p>
+
     <h4>Alter Zustand</h4>
     <p>Der Radverkehr wird über unebene und schmale <.ref>Hochbordradwege</.ref> geführt.</p>
 
