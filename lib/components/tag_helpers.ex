@@ -69,6 +69,7 @@ defmodule Components.TagHelpers do
   attr :dir, :string, values: ["forward", "backward"]
   attr :group, :string
   attr :highlight, :string
+  attr :map_image, :boolean, default: false
   attr :rest, :global
   slot(:inner_block, required: true)
 
@@ -89,6 +90,8 @@ defmodule Components.TagHelpers do
       if assigns[:group],
         do: Map.put(value, :group, assigns.group),
         else: value
+
+    value = if assigns.map_image, do: Map.put(value, :map_image, true), else: value
 
     click_handler =
       Phoenix.LiveView.JS.push("map-zoom-to", value: value)

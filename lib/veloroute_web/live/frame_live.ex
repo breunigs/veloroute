@@ -84,6 +84,7 @@ defmodule VelorouteWeb.FrameLive do
       socket
       |> update_map_bounds(attr)
       |> VelorouteWeb.Live.VideoState.maybe_update_video(article, attr)
+      |> maybe_force_map_image(attr)
 
     {:noreply, socket}
   end
@@ -443,6 +444,15 @@ defmodule VelorouteWeb.FrameLive do
 
   defp update_map_bounds(socket, %{}), do: socket
   defp update_map_bounds(socket, nil), do: socket
+
+  defp maybe_force_map_image(%{assigns: %{show_map_image: false}} = socket, %{"map_image" => v})
+       when v in [true, "true"] do
+    socket
+    |> assign(:show_map_image, true)
+    |> update_map_image(false)
+  end
+
+  defp maybe_force_map_image(socket, _attr), do: socket
 
   defp update_map_image(socket, zoom \\ true) do
     show = socket.assigns.show_map_image
