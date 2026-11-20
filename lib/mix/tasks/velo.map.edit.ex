@@ -5,6 +5,7 @@ defmodule Mix.Tasks.Velo.Map.Edit do
 
   @josm_home "data/josmhome/"
   @josm_default_prefs "data/josm_default_prefs.xml"
+  @josm_cds_archive "data/josmhome/cache/josm.jsa"
   @session_path "data/cache/map_session.jos"
   @route_colors_path "data/cache/route_colors.mapcss"
 
@@ -22,7 +23,10 @@ defmodule Mix.Tasks.Velo.Map.Edit do
 
     commands =
       [
-        ["export", "JAVA_OPTS=-Djosm.home=#{Path.absname(@josm_home)}"],
+        [
+          "export",
+          "JAVA_OPTS=-Djosm.home=#{Path.absname(@josm_home)} -XX:+AutoCreateSharedArchive -XX:SharedArchiveFile=#{Path.absname(@josm_cds_archive)}"
+        ],
         [
           "josm",
           "--offline=osm_api,josm_website,certificates",
