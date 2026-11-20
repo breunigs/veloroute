@@ -8,6 +8,7 @@ defmodule Mix.Tasks.Velo.Videos.Index do
   end
 
   @max_ids_per_single_track 10_000
+  @min_point_interval_ms 1000
 
   defp real_run() do
     IO.puts("Finding videos…")
@@ -80,7 +81,9 @@ defmodule Mix.Tasks.Velo.Videos.Index do
 
       points ->
         {osm_id, nodes, refs} =
-          Enum.reduce(points, {base_osm_id, "", ""}, fn tp, {osm_id, nodes, refs} ->
+          points
+          |> thin_points()
+          |> Enum.reduce({base_osm_id, "", ""}, fn tp, {osm_id, nodes, refs} ->
             node = Video.TimedPointWithGPX.to_osm_node(tp, osm_id)
             ref = "<nd ref='#{osm_id}' />"
             # refs need to be in right order, but for the nodes itself it doesn't matter
@@ -98,5 +101,16 @@ defmodule Mix.Tasks.Velo.Videos.Index do
           #{nodes}
         """
     end
+  end
+
+  defp thin_points([first | rest]) do
+    {kept, last} =
+      Enum.reduce(rest, {[first], first}, fn tp, {kept, _last} ->
+        if tp.time_offset_ms - hd(kept).time_offset_ms >= @min_point_interval_ms,
+          do: {[tp | kept], tp},
+          else: {kept, tp}
+      end)
+
+    Enum.reverse(if hd(kept) == last, do: kept, else: [last | kept])
   end
 end

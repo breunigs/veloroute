@@ -44,7 +44,6 @@ defmodule Video.TimedPointWithGPX do
     """
       <node id='#{id}' lat='#{coord.lat}' lon='#{coord.lon}'>
         <tag k='gpx:video_time' v='#{Video.Timestamp.from_milliseconds(coord.time_offset_ms)}' />
-        <tag k='gpx:ele' v='#{coord.gpx_ele}' />
         <tag k='gpx:time' v='#{time}' />
       </node>
     """
