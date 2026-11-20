@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.Velo.Map.Edit do
   use Mix.Task
   alias Mix.Tasks.Velo.Videos
-  @requirements ["app.start"]
+  @requirements ["app.config"]
 
   @josm_home "data/josmhome/"
   @josm_default_prefs "data/josm_default_prefs.xml"
@@ -10,6 +10,7 @@ defmodule Mix.Tasks.Velo.Map.Edit do
   @route_colors_path "data/cache/route_colors.mapcss"
 
   def run(["postprocess"]) do
+    Mix.Task.run("app.start")
     IO.puts("Cleaning up map.osm…")
     remove_osm_history()
     IO.puts("Updating GPX…")
@@ -18,6 +19,8 @@ defmodule Mix.Tasks.Velo.Map.Edit do
 
   @shortdoc "Allows editing map in JOSM"
   def run(_) do
+    # starting the full app delays JOSM by about a second
+    {:ok, _} = Application.ensure_all_started(:memoize)
     generate_mapcss()
     write_josm_session()
 
