@@ -59,8 +59,10 @@ defmodule Data.Article.Blog.Vierlandenstrasse do
 
   def links(_assigns) do
     [
-      {"Baustelleninfo", ~d[2026-09],
-       "https://lsbg.hamburg.de/resource/blob/1166696/27fbc308cf02ea192bc9f41fbb347182/vierlandenstrasse-anliegerinformation-september-2026-data.pdf"},
+      {"Baustelleninfo", ~d[2026-11],
+       "https://lsbg.hamburg.de/resource/blob/1166696/70c6c093aba0a71dbf10bd010c3ff07e/vierlandenstrasse-anliegerinformation-november-2026-data.pdf"},
+      # {"Baustelleninfo", ~d[2026-09],
+      #  "https://lsbg.hamburg.de/resource/blob/1166696/27fbc308cf02ea192bc9f41fbb347182/vierlandenstrasse-anliegerinformation-september-2026-data.pdf"},
       # {"Baustelleninfo", ~d[2026-04],
       #  "https://fbhh-evergabe.web.hamburg.de/evergabe.bieter/eva/sup'plierportal/fhh/subproject/46ec20d8-ffbd-42a3-80c4-7cbcb15070f4/details"},
       {"Bauvergabe", ~d[2026-02],

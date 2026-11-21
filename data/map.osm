@@ -26149,10 +26149,6 @@
   <node id='-230676377' action='modify' lat='53.5478077263' lon='10.00016569555' />
   <node id='-230676378' action='modify' lat='53.54783003724' lon='9.99905526102' />
   <node id='-230676379' action='modify' lat='53.54778541534' lon='9.99857246339' />
-  <node id='-230676404' action='modify' lat='53.54719735641' lon='9.99238460988' />
-  <node id='-230676405' action='modify' lat='53.54709376822' lon='9.99239265651' />
-  <node id='-230676406' action='modify' lat='53.54710492389' lon='9.99268501729' />
-  <node id='-230676407' action='modify' lat='53.5472101057' lon='9.99269306391' />
   <node id='-230676414' action='modify' lat='53.54713600036' lon='9.99051376909' />
   <node id='-230676415' action='modify' lat='53.54705791072' lon='9.99047621816' />
   <node id='-230676416' action='modify' lat='53.54705791072' lon='9.99085172743' />
@@ -28975,6 +28971,23 @@
   <node id='-339349170' action='modify' lat='53.51540940303' lon='9.99796626806' />
   <node id='-339349171' action='modify' lat='53.51446523592' lon='9.99764440298' />
   <node id='-339349172' action='modify' lat='53.51229612369' lon='9.99725816488' />
+  <node id='-339349177' action='modify' lat='53.54957864858' lon='9.9961933172' />
+  <node id='-339349182' action='modify' lat='53.54930688984' lon='9.99580154418' />
+  <node id='-339349183' lat='53.549045' lon='9.9952531' />
+  <node id='-339349184' lat='53.5487434' lon='9.9946983' />
+  <node id='-339349189' action='modify' lat='53.54832351485' lon='9.99437197732' />
+  <node id='-339349200' action='modify' lat='53.54721227853' lon='9.99174276938' />
+  <node id='-339349202' action='modify' lat='53.54699905442' lon='9.99174782904' />
+  <node id='-339349205' lat='53.5470596' lon='9.9934159' />
+  <node id='-339349210' action='modify' lat='53.54711339006' lon='9.99431805145' />
+  <node id='-339349216' action='modify' lat='53.54761670166' lon='9.99432894048' />
+  <node id='-339349217' action='modify' lat='53.54837204685' lon='9.99504954722' />
+  <node id='-339349221' action='modify' lat='53.54875873838' lon='9.99551073862' />
+  <node id='-339349222' lat='53.5490871' lon='9.996299' />
+  <node id='-339349223' action='modify' lat='53.54916644614' lon='9.9964755' />
+  <node id='-339674835' action='modify' lat='53.54725951079' lon='9.99297737539' />
+  <node id='-339674867' action='modify' lat='53.54745074797' lon='9.9934038493' />
+  <node id='-339674872' action='modify' lat='53.54782525474' lon='9.9939376089' />
   <node id='17670006504' version='1' lat='53.6504' lon='10.01767' />
   <node id='120005140583' version='1' lat='53.5140583' lon='10.000012' />
   <node id='260005412177' action='delete' version='1' lat='53.5412177' lon='10.000026' />
@@ -77222,15 +77235,6 @@
     <tag k='name' v='2025-05-01-willy-brandt-strasse' />
     <tag k='type' v='article' />
   </way>
-  <way id='-20853833' action='modify'>
-    <nd ref='-230676404' />
-    <nd ref='-230676405' />
-    <nd ref='-230676406' />
-    <nd ref='-230676407' />
-    <nd ref='-230676404' />
-    <tag k='name' v='2025-05-01-willy-brandt-strasse' />
-    <tag k='type' v='article' />
-  </way>
   <way id='-20853842' action='modify'>
     <nd ref='-230676414' />
     <nd ref='-230676415' />
@@ -81214,6 +81218,28 @@
     <nd ref='-339349172' />
     <nd ref='-339349166' />
     <tag k='name' v='2026-11-20-sperrung-radroute-12-wilhelmsburg' />
+    <tag k='type' v='article' />
+  </way>
+  <way id='-339349228' action='modify'>
+    <nd ref='-339349177' />
+    <nd ref='-339349182' />
+    <nd ref='-339349183' />
+    <nd ref='-339349184' />
+    <nd ref='-339349189' />
+    <nd ref='-339674872' />
+    <nd ref='-339674867' />
+    <nd ref='-339674835' />
+    <nd ref='-339349200' />
+    <nd ref='-339349202' />
+    <nd ref='-339349205' />
+    <nd ref='-339349210' />
+    <nd ref='-339349216' />
+    <nd ref='-339349217' />
+    <nd ref='-339349221' />
+    <nd ref='-339349222' />
+    <nd ref='-339349223' />
+    <nd ref='-339349177' />
+    <tag k='name' v='2026-11-21-domstrasse' />
     <tag k='type' v='article' />
   </way>
   <way id='2956272' version='1'>
@@ -97710,4 +97736,41 @@
     <member type='way' ref='298844244' role='backward' />
     <tag k='name' v='alltagsroute-14' />
   </relation>
+  <node id='-339674873' lat='53.5559069' lon='10.0011367' />
+  <node id='-339674874' lat='53.5557461' lon='10.0008982' />
+  <node id='-339674875' lat='53.5556989' lon='10.0009210' />
+  <node id='-339674876' lat='53.5551835' lon='10.0018183' />
+  <node id='-339674877' lat='53.5548901' lon='10.0024408' />
+  <node id='-339674878' lat='53.5544630' lon='10.0031605' />
+  <node id='-339674879' lat='53.5542379' lon='10.0035131' />
+  <node id='-339674880' lat='53.5541063' lon='10.0036408' />
+  <node id='-339674881' lat='53.5541073' lon='10.0039157' />
+  <node id='-339674882' lat='53.5541746' lon='10.0041330' />
+  <node id='-339674883' lat='53.5542545' lon='10.0040620' />
+  <node id='-339674884' lat='53.5543992' lon='10.0038294' />
+  <node id='-339674885' lat='53.5543495' lon='10.0037093' />
+  <node id='-339674886' lat='53.5551533' lon='10.0024331' />
+  <node id='-339674887' lat='53.5554065' lon='10.0021194' />
+  <node id='-339674888' lat='53.5559149' lon='10.0012991' />
+  <way id='-339674889'>
+    <nd ref='-339674873' />
+    <nd ref='-339674874' />
+    <nd ref='-339674875' />
+    <nd ref='-339674876' />
+    <nd ref='-339674877' />
+    <nd ref='-339674878' />
+    <nd ref='-339674879' />
+    <nd ref='-339674880' />
+    <nd ref='-339674881' />
+    <nd ref='-339674882' />
+    <nd ref='-339674883' />
+    <nd ref='-339674884' />
+    <nd ref='-339674885' />
+    <nd ref='-339674886' />
+    <nd ref='-339674887' />
+    <nd ref='-339674888' />
+    <nd ref='-339674873' />
+    <tag k='name' v='2026-11-21-glockengiesserwall' />
+    <tag k='type' v='article' />
+  </way>
 </osm>

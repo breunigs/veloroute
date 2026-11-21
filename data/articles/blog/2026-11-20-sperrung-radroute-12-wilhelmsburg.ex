@@ -1,14 +1,15 @@
 defmodule Data.Article.Blog.SperrungRadroute12Wilhelmsburg do
   use Article.Default
 
-  def title(), do: "Sperrung Radroute 12 in Wilhelmsburg"
+  def title(), do: "Sperrung Radroute 12 auf Wilhelmsburg"
 
-  def summary(), do: "Radroute 12 in Wilhelmsburg gesperrt, Umleitung über Georg-Wilhelm-Straße."
+  def summary(),
+    do: "Sperrung wegen Wohnungsbau für mindestens 3 Jahre. Umleitung über Georg-Wilhelm-Straße."
 
   def type(), do: :construction
 
   def start(), do: ~d[2026-11]
-  def stop(), do: ~d[2029-11]
+  def stop(), do: ~d[2029]
 
   def tags(), do: ["radroute-12", "radroute-4", "FR6"]
 
