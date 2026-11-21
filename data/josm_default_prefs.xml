@@ -13,6 +13,9 @@
                 <tag key="url" value="data/josm.mapcss" />
             </map>
         </maps>
+        <list key="plugins" xmlns="http://josm.openstreetmap.de/preferences-1.0">
+            <entry value="veloroute-video-layers" />
+        </list>
         <maps key="taggingpreset.entries" xmlns="http://josm.openstreetmap.de/preferences-1.0">
             <map>
                 <tag key="active" value="false" />

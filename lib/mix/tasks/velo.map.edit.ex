@@ -8,6 +8,8 @@ defmodule Mix.Tasks.Velo.Map.Edit do
   @josm_cds_archive "data/josmhome/cache/josm.jsa"
   @session_path "data/cache/map_session.jos"
   @route_colors_path "data/cache/route_colors.mapcss"
+  @video_layers_plugin_src "tools/josm-video-layers"
+  @video_layers_plugin_jar "data/josmhome/plugins/veloroute-video-layers.jar"
 
   def run(["postprocess"]) do
     Mix.Task.run("app.start")
@@ -23,12 +25,13 @@ defmodule Mix.Tasks.Velo.Map.Edit do
     {:ok, _} = Application.ensure_all_started(:memoize)
     generate_mapcss()
     write_josm_session()
+    build_video_layers_plugin()
 
     commands =
       [
         [
           "export",
-          "JAVA_OPTS=-Djosm.home=#{Path.absname(@josm_home)} -XX:+AutoCreateSharedArchive -XX:SharedArchiveFile=#{Path.absname(@josm_cds_archive)}"
+          "JAVA_OPTS=-Djosm.home=#{Path.absname(@josm_home)} -XX:+AutoCreateSharedArchive -XX:SharedArchiveFile=#{Path.absname(@josm_cds_archive)} -Dveloroute.video_layers=#{Enum.join(video_layers(), ",")}"
         ],
         [
           "josm",
@@ -93,27 +96,31 @@ defmodule Mix.Tasks.Velo.Map.Edit do
   end
 
   @max_years_by_default 5
-  defp video_layers(start_index) do
-    recent_years =
-      Videos.osm_index_path("*")
-      |> Path.absname()
-      |> Path.wildcard()
-      |> Enum.sort(&(&1 >= &2))
-      |> Enum.take(@max_years_by_default)
+  defp video_layers() do
+    Videos.osm_index_path("*")
+    |> Path.absname()
+    |> Path.wildcard()
+    |> Enum.sort(&(&1 >= &2))
+    |> Enum.take(@max_years_by_default)
+  end
 
-    Enum.reduce(recent_years, {"", start_index}, fn a_year, {xml, index} ->
-      name = Path.basename(a_year)
+  defp build_video_layers_plugin() do
+    sources = Path.wildcard("#{@video_layers_plugin_src}/**/*")
 
-      xml =
-        xml <>
-          """
-            <layer index="#{index}" name="#{name}" type="osm-data" version="0.1" visible="false">
-              <file>file:#{a_year}</file>
-            </layer>
-          """
+    jar_mtime =
+      if File.exists?(@video_layers_plugin_jar), do: File.stat!(@video_layers_plugin_jar).mtime
 
-      {xml, index + 1}
-    end)
+    if !jar_mtime || Enum.any?(sources, &(File.stat!(&1).mtime > jar_mtime)) do
+      IO.puts("Building JOSM video layers plugin…")
+
+      {_, 0} =
+        System.cmd(
+          Path.absname("#{@video_layers_plugin_src}/build.sh"),
+          [@video_layers_plugin_jar],
+          stderr_to_stdout: true,
+          into: IO.stream()
+        )
+    end
   end
 
   defp write_josm_session do
@@ -134,13 +141,10 @@ defmodule Mix.Tasks.Velo.Map.Edit do
           </layer>
     """
 
-    {video_layers, next_index} = video_layers(2)
-
     xml =
       xml <>
-        video_layers <>
         """
-              <layer index="#{next_index}" name="OpenStreetMap Carto (Standard)" type="imagery" version="0.1" visible="true">
+              <layer index="2" name="OpenStreetMap Carto (Standard)" type="imagery" version="0.1" visible="true">
                 <max-zoom>19</max-zoom>
                 <valid-georeference>true</valid-georeference>
                 <modTileFeatures>true</modTileFeatures>
