@@ -28,6 +28,10 @@ defmodule Basemap.Styles do
         data
         |> String.replace("metadata.json", "metadata.json.local")
         |> String.replace(".pbf", ".pbf.gz")
+        |> String.replace(
+          Basemap.Appointments.serve_path(),
+          "/" <> Path.basename(Basemap.Appointments.assets_path())
+        )
       end
 
       case write(path, "asset://", ".local", localizer, &Basemap.DasharrayExpander.expand/1) do
