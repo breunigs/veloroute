@@ -85,7 +85,8 @@ defmodule Veloroute.MixProject do
       {:phoenix_bakery, "~> 1.0.0", runtime: false},
       {:phoenix_live_view, "~> 1.2"},
       {:phoenix, "~> 1.8.2"},
-      {:lazy_html, ">= 0.0.0", only: :test},
+      # 0.1.14 needs fine 0.2, which exla does not compile against yet
+      {:lazy_html, "~> 0.1.0 and < 0.1.14", only: :test},
       {:polyline, "~> 1.6"},
       {:recon, "~> 2.5"},
       {:reverse_proxy_plug, "~> 3.0"},
